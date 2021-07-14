@@ -51,6 +51,10 @@ public class UserController {
         Pageable pageable = new PageRequest(page, size);
         return accountService.getPageUsers(motCle,pageable);
     }
+    @DeleteMapping("/delete/{username}")
+    public void removeUser(@PathVariable("username") String username){
+         AccountService.deleteUser(username);
+    }
 
 
 }

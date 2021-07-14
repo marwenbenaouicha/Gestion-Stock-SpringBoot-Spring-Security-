@@ -26,7 +26,7 @@ public class MicroserviceUsersApplication {
             accountService.save(new AppRole("USER"));
             accountService.save(new AppRole("ADMIN"));
 
-            Stream.of("user1","user2","user3","admin").forEach(un->{
+            Stream.of("Marwen","Hmani","Melek","admin").forEach(un->{
                 accountService.saveUser(new UserForm(un,"1234","1234"));
             });
             accountService.addRoleToUser("admin","ADMIN");
@@ -37,7 +37,7 @@ public class MicroserviceUsersApplication {
             appRoles.add(new AppRole("ADMIN"));
             appRoles.add(new AppRole("USER"));
 
-            accountService.saveUser(new UserForm("Souad","soso","soso",false,appRoles));
+            accountService.saveUser(new UserForm("user1","1234","1234",false,appRoles));
 
 
         };

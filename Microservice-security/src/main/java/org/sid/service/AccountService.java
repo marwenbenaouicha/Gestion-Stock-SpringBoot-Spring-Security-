@@ -19,7 +19,10 @@ public interface AccountService {
     public void addRoleToUser(String username, String rolename);
     public List<AppUser> getListUsers();
     public Page<AppUser> getPageUsers(String motCle, Pageable pageable);
-
+    public static void deleteUser(String user) {
+		// TODO Auto-generated method stub
+		
+	}
     public List<AppRole> getListRoles();
     public Page<AppRole> getPageRoles(String motCle, Pageable pageable);
 

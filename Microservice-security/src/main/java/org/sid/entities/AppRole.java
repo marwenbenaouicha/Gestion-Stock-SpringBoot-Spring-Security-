@@ -15,7 +15,13 @@ public class AppRole {
     private String roleName;
 
 
-    public AppRole(String roleName) {
+    public AppRole(Long id, String roleName) {
+		super();
+		this.id = id;
+		this.roleName = roleName;
+	}
+
+	public AppRole(String roleName) {
         this.roleName = roleName;
     }
 

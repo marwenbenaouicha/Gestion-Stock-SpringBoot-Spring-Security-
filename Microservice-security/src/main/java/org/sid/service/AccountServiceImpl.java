@@ -41,7 +41,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AppUser saveUser(String username, String password, String confirmedPassword) {
-        return null;
+    	AppUser appUser=new AppUser();
+        appUser.setUsername(username);
+        appUser.setActived(true);     
+        if(!password.equals(confirmedPassword)) throw new RuntimeException("Please verify your password and your confirm password");
+        appUser.setPassword(bCryptPasswordEncoder.encode(password));
+        appUserRepository.save(appUser);
+        return appUser; 
+        
     }
 
     @Override
@@ -56,19 +63,7 @@ public class AccountServiceImpl implements AccountService {
         appUser.setPassword(bCryptPasswordEncoder.encode(userForm.getPassword()));
         appUserRepository.save(appUser);
 
-        if(userForm.getRoles()!=null){
-            Stream<AppRole> streamUsers = userForm.getRoles().stream();
-
-            streamUsers.forEach(role->{
-
-                addRoleToUser(userForm.getUsername(),role.getRoleName());
-
-            });
-        }
-        else {
-            addRoleToUser(userForm.getUsername(),"USER");
-        }
-
+        
         return appUser;
     }
 
@@ -133,4 +128,9 @@ public class AccountServiceImpl implements AccountService {
 
         return appRoleRepository.findAll("%"+motCle+"%",pageable);
     }
+    
+    public void deleteUser(String username) {
+    	appUserRepository.deleteByUsername(username);
+    }
+
 }

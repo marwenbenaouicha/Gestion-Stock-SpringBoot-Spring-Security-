@@ -17,5 +17,7 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
 
     @Query("Select u from AppUser u where u.username like:usernaeme")
     public Page<AppUser> findAll(@Param("usernaeme")String motCle, Pageable pageable);
+    
+    public void deleteByUsername(String username);
 
 }
